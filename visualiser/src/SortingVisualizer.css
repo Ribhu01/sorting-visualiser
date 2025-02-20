@@ -1,0 +1,28 @@
+.visualizer-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .array-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 300px;
+    max-width: 900px;
+    width: 100%;
+    margin: 20px auto;
+    border: 2px solid #ddd;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  
+  .bar {
+    width: 400px;
+    background-color: blue;
+    margin: 4px;
+    transition: height 0.3s ease-in-out;
+    display: inline-block;
+  }
+  

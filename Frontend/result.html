@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Result</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Sorted Array:</h2>
+        <div id="sorting-visualizer"></div>
+
+    
+
+        <div class="button-group">
+            <a href="index.html" class="button">Back to Home</a>
+            <button onclick="window.location.reload()" class="button">Try Again</button>
+        </div>
+    </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const sortedArray = JSON.parse(localStorage.getItem("sortedArray"));
+                const algorithm = localStorage.getItem("selectedAlgorithm");
+        
+                if (!sortedArray || !algorithm) {
+                    document.getElementById("sorting-visualizer").innerHTML = 
+                        "<h2 style='color:red;'>⚠️ No data received! Please go back and generate an array.</h2>";
+                    return;
+                }
+            });
+        </script>
+    <script src="/Users/ribhu/Downloads/dsa/sorting-visualiser/visualiser/build/static/js/main.026f9881.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithm Dashboard</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Sorting Algorithm Dashboard</h2>
+
+        <form id="sortingForm">
+                <div class="input-group">
+                    <input type="hidden" id="arrayInput" name="array">
+                    <button type="button" onclick="generateRandomArray()">Generate Random Array</button>
+                </div>
+            
+                <div class="input-group">
+                    <label>Array Size:</label>
+                    <input type="number" id="arraySizeInput" value="10" min="1" max="50">
+                </div>
+            
+                <div class="input-group">
+                    <label>Range:</label>
+                    <div class="range-inputs">
+                        <input type="number" id="minRange" value="1" placeholder="Min">
+                        <span>to</span>
+                        <input type="number" id="maxRange" value="100" placeholder="Max">
+                    </div>
+                </div>
+            
+                <label>Select Sorting Algorithm:</label>
+                <select id="algorithmSelect" name="algorithm">
+                    <option value="bubble">Bubble Sort</option>
+                    <option value="merge">Merge Sort</option>
+                    <option value="quick">Quick Sort</option>
+                </select>
+            
+                <input type="hidden" id="sortedArrayInput" name="sortedArray">
+                <input type="hidden" id="selectedAlgorithmInput" name="selectedAlgorithm">
+            
+                <button type="submit" id="sortButton" disabled>Sort</button>
+            </form>
+        <div id="currentArray"></div>
+    </div>
+
+    <script>
+        function generateRandomArray() {
+            const size = parseInt(document.getElementById('arraySizeInput').value);
+            const min = parseInt(document.getElementById('minRange').value);
+            const max = parseInt(document.getElementById('maxRange').value);
+
+            if (isNaN(size) || isNaN(min) || isNaN(max)) {
+                alert('Please enter valid numbers');
+                return;
+            }
+
+            if (min >= max) {
+                alert('Maximum value must be greater than minimum value');
+                return;
+            }
+
+            if (size < 1 || size > 50) {
+                alert('Array size must be between 1 and 50');
+                return;
+            }
+
+            const randomArray = Array.from({length: size}, () => 
+                Math.floor(Math.random() * (max - min + 1)) + min
+            );
+
+            document.getElementById('arrayInput').value = randomArray.join(',');
+            document.getElementById('sortedArrayInput').value = JSON.stringify(randomArray); // Store array
+            document.getElementById('currentArray').innerHTML = 'Current Array: [' + randomArray.join(', ') + ']';
+            document.getElementById('sortButton').disabled = false;
+        }
+
+        function handleSorting(event) {
+            event.preventDefault(); 
+
+
+            const algorithm = document.getElementById('algorithmSelect').value;
+            localStorage.setItem("selectedAlgorithm", algorithm);
+
+
+            const sortedArray = document.getElementById('sortedArrayInput').value;
+            if (!sortedArray) {
+                alert("Please generate an array first!");
+                return;
+            }
+            localStorage.setItem("sortedArray", sortedArray);
+
+            
+            window.location.href = "result.html";
+        }
+
+        document.getElementById('sortingForm').addEventListener('submit', handleSorting);
+    </script>
+</body>
+</html>
